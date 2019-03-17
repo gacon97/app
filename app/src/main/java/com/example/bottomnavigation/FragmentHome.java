@@ -19,6 +19,7 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -50,6 +51,9 @@ public class FragmentHome extends Fragment {
     private RecyclerView recyclerView;
     private List<Movie> movieList;
     private StoreAdapter mAdapter;
+    private ViewFlipper viewFlipper;
+
+
 
     public FragmentHome() {
         // Required empty public constructor
@@ -83,6 +87,15 @@ public class FragmentHome extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         recyclerView.setNestedScrollingEnabled(false);
+        int images[] = {R.drawable.slide1, R.drawable.slide2, R.drawable.slide3};
+
+        viewFlipper = view.findViewById(R.id.v_flipper);
+        viewFlipper.canScrollHorizontally(0);
+
+        for(int image: images)
+        {
+            imageFlipper(image);
+        }
 
         fetchStoreItems();
 
@@ -172,7 +185,7 @@ public class FragmentHome extends Fragment {
             public ImageView thumbnail;
 
             public MyViewHolder(View view) {
-                super(view);
+                super(view);   //gọi đến contructor của viewHolder truyền vào view
                 name = view.findViewById(R.id.title);
                 price = view.findViewById(R.id.price);
                 thumbnail = view.findViewById(R.id.thumbnail);
@@ -208,5 +221,18 @@ public class FragmentHome extends Fragment {
         public int getItemCount() {
             return movieList.size();
         }
+    }
+    public void imageFlipper(int image)
+    {
+        ImageView imageView = new ImageView(getActivity());
+
+        imageView.setBackgroundResource(image);
+        viewFlipper.addView(imageView);
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(3000);
+
+        viewFlipper.setInAnimation(getActivity(), android.R.anim.fade_in);
+        viewFlipper.setOutAnimation(getActivity(), android.R.anim.fade_out);
+
     }
 }
