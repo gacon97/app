@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -46,13 +48,19 @@ import com.example.bottomnavigation.R;
 public class FragmentHome extends Fragment {
 
     private static final String TAG = FragmentHome.class.getSimpleName();
-    private static final String URL = "https://api.androidhive.info/json/movies_2017.json";
+    private static final String URL = "" +
+        "" +
+        "" +
+        "" +
+        "" +
+        "" +
+        "";
 
     private RecyclerView recyclerView;
     private List<Movie> movieList;
     private StoreAdapter mAdapter;
     private ViewFlipper viewFlipper;
-
+    private GestureDetector mGestureDetector;
 
 
     public FragmentHome() {
@@ -98,6 +106,8 @@ public class FragmentHome extends Fragment {
         }
 
         fetchStoreItems();
+        CustomGestureDetector customGestureDetector = new CustomGestureDetector();
+        mGestureDetector = new GestureDetector(getActivity(), customGestureDetector);
 
         return view;
     }
@@ -235,4 +245,28 @@ public class FragmentHome extends Fragment {
         viewFlipper.setOutAnimation(getActivity(), android.R.anim.fade_out);
 
     }
+
+    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            // Swipe left (next)
+            if (e1.getX() > e2.getX()) {
+                viewFlipper.showNext();
+            }
+
+            // Swipe right (previous)
+            if (e1.getX() < e2.getX()) {
+                viewFlipper.showPrevious();
+            }
+
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    }
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
+
+        return onTouchEvent(event);
+    }
+
 }
