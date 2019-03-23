@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
 
         for($i=0; $i<count($factories); $i++)
         {
-                \App\Category::create([
+                \App\Models\Category::create([
                  'name' => $factories[$i],
              ]);
         }
