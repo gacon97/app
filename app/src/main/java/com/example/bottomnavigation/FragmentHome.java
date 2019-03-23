@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +21,7 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,11 +48,20 @@ import com.example.bottomnavigation.R;
 public class FragmentHome extends Fragment {
 
     private static final String TAG = FragmentHome.class.getSimpleName();
-    private static final String URL = "https://api.androidhive.info/json/movies_2017.json";
+    private static final String URL = "" +
+        "" +
+        "" +
+        "" +
+        "" +
+        "" +
+        "";
 
     private RecyclerView recyclerView;
     private List<Movie> movieList;
     private StoreAdapter mAdapter;
+    private ViewFlipper viewFlipper;
+    private GestureDetector mGestureDetector;
+
 
     public FragmentHome() {
         // Required empty public constructor
@@ -83,8 +95,19 @@ public class FragmentHome extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         recyclerView.setNestedScrollingEnabled(false);
+        int images[] = {R.drawable.slide1, R.drawable.slide2, R.drawable.slide3};
+
+        viewFlipper = view.findViewById(R.id.v_flipper);
+        viewFlipper.canScrollHorizontally(0);
+
+        for(int image: images)
+        {
+            imageFlipper(image);
+        }
 
         fetchStoreItems();
+        CustomGestureDetector customGestureDetector = new CustomGestureDetector();
+        mGestureDetector = new GestureDetector(getActivity(), customGestureDetector);
 
         return view;
     }
@@ -172,7 +195,7 @@ public class FragmentHome extends Fragment {
             public ImageView thumbnail;
 
             public MyViewHolder(View view) {
-                super(view);
+                super(view);   //gọi đến contructor của viewHolder truyền vào view
                 name = view.findViewById(R.id.title);
                 price = view.findViewById(R.id.price);
                 thumbnail = view.findViewById(R.id.thumbnail);
@@ -209,4 +232,41 @@ public class FragmentHome extends Fragment {
             return movieList.size();
         }
     }
+    public void imageFlipper(int image)
+    {
+        ImageView imageView = new ImageView(getActivity());
+
+        imageView.setBackgroundResource(image);
+        viewFlipper.addView(imageView);
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(3000);
+
+        viewFlipper.setInAnimation(getActivity(), android.R.anim.fade_in);
+        viewFlipper.setOutAnimation(getActivity(), android.R.anim.fade_out);
+
+    }
+
+    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            // Swipe left (next)
+            if (e1.getX() > e2.getX()) {
+                viewFlipper.showNext();
+            }
+
+            // Swipe right (previous)
+            if (e1.getX() < e2.getX()) {
+                viewFlipper.showPrevious();
+            }
+
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    }
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
+
+        return onTouchEvent(event);
+    }
+
 }
