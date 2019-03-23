@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('categories', 'categoryAPIController');
+Route::resource('categories', 'CategoryAPIController');
 
 Route::resource('travels', 'TravelAPIController');
 
