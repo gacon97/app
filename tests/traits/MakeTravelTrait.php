@@ -46,6 +46,8 @@ trait MakeTravelTrait
             'place' => $fake->word,
             'feature' => $fake->word,
             'category_id' => $fake->randomDigitNotNull,
+            'lat' => $fake->word,
+            'lng' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s')
         ], $travelFields);

@@ -17,8 +17,10 @@ class CreateTravelsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('place');
-            $table->string('feature');
+            $table->longtext('feature');
             $table->integer('category_id');
+            $table->string('lat');
+            $table->string('lng');
             $table->timestamps();
             $table->softDeletes();
         });

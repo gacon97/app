@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class TravelRepository
  * @package App\Repositories
- * @version March 15, 2019, 7:28 am UTC
+ * @version March 20, 2019, 4:34 pm UTC
  *
  * @method Travel findWithoutFail($id, $columns = ['*'])
  * @method Travel find($id, $columns = ['*'])
@@ -23,7 +23,9 @@ class TravelRepository extends BaseRepository
         'name',
         'place',
         'feature',
-        'category_id'
+        'category_id',
+        'lat',
+        'lng'
     ];
 
     /**

@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Travel
  * @package App\Models
- * @version March 15, 2019, 7:28 am UTC
+ * @version March 20, 2019, 4:34 pm UTC
  *
  * @property string name
  * @property string place
- * @property string feature
+ * @property longtext feature
  * @property integer category_id
+ * @property string lat
+ * @property string lng
  */
 class Travel extends Model
 {
@@ -29,7 +31,9 @@ class Travel extends Model
         'name',
         'place',
         'feature',
-        'category_id'
+        'category_id',
+        'lat',
+        'lng'
     ];
 
     /**
@@ -40,8 +44,9 @@ class Travel extends Model
     protected $casts = [
         'name' => 'string',
         'place' => 'string',
-        'feature' => 'string',
-        'category_id' => 'integer'
+        'category_id' => 'integer',
+        'lat' => 'string',
+        'lng' => 'string'
     ];
 
     /**
@@ -52,9 +57,6 @@ class Travel extends Model
     public static $rules = [
         
     ];
-    public function category()
-    {
-    	return $this->belongsTo('App\Models\Category');
-    }
+
     
 }

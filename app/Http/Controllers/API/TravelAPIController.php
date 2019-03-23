@@ -11,6 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use DB;
 
 /**
  * Class TravelController
@@ -125,5 +126,15 @@ class TravelAPIController extends AppBaseController
         $travel->delete();
 
         return $this->sendResponse($id, 'Travel deleted successfully');
+    }
+    public function getPlace(Request $request)
+    {
+        $lat = $request->lat;
+        $lng = $request->lng;
+        $radius = $request->radius;
+        $raw  = 'SELECT *, ( 6371 * acos( cos( radians('.$lat.') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) ) AS distance FROM travels HAVING distance < '.$radius.' ORDER BY distance, created_at DESC LIMIT 0 , 100;';
+        $travels = DB::select(DB::raw($raw));
+        // return count($travels);
+        return $this->sendResponse($travels, 'lay thanh cong');
     }
 }

@@ -22,6 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('categories', 'categoryAPIController');
 
-
-
 Route::resource('travels', 'TravelAPIController');
+
+Route::get('/travels-near', 'TravelAPIController@getPlace');
