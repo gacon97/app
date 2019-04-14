@@ -137,4 +137,13 @@ class TravelAPIController extends AppBaseController
         // return count($travels);
         return $this->sendResponse($travels, 'lay thanh cong');
     }
+
+    public function getImagesTravel($id)
+    {
+        $travel = $this->travelRepository->findWithoutFail($id);
+        $images = $travel->images;
+        return $this->sendResponse($images->toArray(), 'Get images successfully');
+    }
+
+    
 }

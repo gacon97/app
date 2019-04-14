@@ -58,5 +58,13 @@ class Travel extends Model
         
     ];
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
     
+    public function images()
+    {
+        return $this->hasMany('App\Models\Image');
+    }
 }

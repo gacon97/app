@@ -126,4 +126,11 @@ class CategoryAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Category deleted successfully');
     }
+
+    public function getTravelsCategory($id)
+    {
+        $category = $this->categoryRepository->findWithoutFail($id);
+        $travels = $category->travels;
+        return $this->sendResponse($travels, 'Category deleted successfully');
+    }
 }

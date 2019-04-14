@@ -25,3 +25,9 @@ Route::resource('categories', 'categoryAPIController');
 Route::resource('travels', 'TravelAPIController');
 
 Route::get('/travels-near', 'TravelAPIController@getPlace');
+
+Route::resource('images', 'ImageAPIController');
+
+Route::get('/travel/{id}/images', 'TravelAPIController@getImagesTravel');
+
+Route::get('/category/{id}/travels', 'categoryAPIController@getTravelsCategory');
