@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('categories', 'categoryAPIController');
+Route::resource('categories', 'CategoryAPIController');
 
 Route::resource('travels', 'TravelAPIController');
 
@@ -30,4 +30,14 @@ Route::resource('images', 'ImageAPIController');
 
 Route::get('/travel/{id}/images', 'TravelAPIController@getImagesTravel');
 
-Route::get('/category/{id}/travels', 'categoryAPIController@getTravelsCategory');
+Route::get('/category/{id}/travels', 'CategoryAPIController@getTravelsCategory');
+
+Route::get('/nhung/{lat}/{lng}', 'NhungController@add');
+
+
+
+
+
+
+
+Route::resource('events', 'EventAPIController');

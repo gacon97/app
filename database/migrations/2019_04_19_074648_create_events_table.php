@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateEventsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -14,15 +14,15 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('travel_id')->default(1);
+            $table->increments('id');
+            $table->integer('travel_id');
             $table->string('name');
             $table->string('place');
             $table->string('topic');
-            $table->dateTime('end_time');
             $table->dateTime('start_time');
-
+            $table->dateTime('end_time');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +33,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::drop('events');
     }
 }
