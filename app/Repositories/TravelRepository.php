@@ -35,4 +35,9 @@ class TravelRepository extends BaseRepository
     {
         return Travel::class;
     }
+    public function search($key)
+    {
+        return $this->model->where('name', 'like', '%' . $key . '%')->get();       
+    }
+
 }

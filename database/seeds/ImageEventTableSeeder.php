@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
-// use Illuminate\Http\File;
 
-class ImageSeeder extends Seeder
+class ImageEventTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +11,13 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $dir = [
-            'public/images/ta_hien/',
-            'public/images/royal/',
-            'public/images/chua_tran_quoc/',
-            'public/images/hang_buom/',
-            'public/images/lang_bac/',
-            'public/images/ho_guom/'
+         $dir = [
+            'public/image_events/ta_hien/',
+            'public/image_events/royal/',
+            'public/image_events/chua_tran_quoc/',
+            'public/image_events/hang_buom/',
+            'public/image_events/lang_bac/',
+            'public/image_events/ho_guom/'
         ];
         for($k = 0; $k<count($dir); $k++)
         {
@@ -39,15 +37,15 @@ class ImageSeeder extends Seeder
                                 // $path = $file->store('public/images');
                                 // $link = Storage::url($path);
 
-                                \App\Models\Image::create([
-                                    'travel_id' => $k+1,
+                                \App\Models\ImageEvent::create([
+                                    'event_id' => $k+1,
                                     'image' => Storage::url($dir[$k].$file),
                                 ]);
                             }
                             else {
                                 {
-                                    \App\Models\Image::create([
-                                    'travel_id' => $k+1,
+                                    \App\Models\ImageEvent::create([
+                                    'event_id' => $k+1,
                                     'image' => $path,
                                 ]);
                                 }
@@ -62,8 +60,6 @@ class ImageSeeder extends Seeder
                 }
             }
 
-        }
-
-
+        }       
     }
 }

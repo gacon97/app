@@ -34,10 +34,14 @@ Route::get('/category/{id}/travels', 'CategoryAPIController@getTravelsCategory')
 
 Route::get('/nhung/{lat}/{lng}', 'NhungController@add');
 
+Route::get('/search/{keyword}', 'TravelAPIController@search');
 
+Route::get('/event/{id}/images', 'EventAPIController@getImagesEvent');
 
 
 
 
 
 Route::resource('events', 'EventAPIController');
+
+Route::resource('image_events', 'ImageEventAPIController');

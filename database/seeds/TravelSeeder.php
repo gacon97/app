@@ -61,8 +61,8 @@ class TravelSeeder extends Seeder
              
               \App\Models\Travel::create([
                 'category_id' => App\Models\Category::all()->random()->id,
-                'name' => ' Hồ Hoàn Kiếm',
-                'place' => ' Hồ Hoàn Kiếm',
+                'name' => 'Hồ Hoàn Kiếm',
+                'place' => 'Hồ Hoàn Kiếm',
                 'feature' => 'Hồ Hoàn Kiếm là một hồ nước lớn, khá đẹp nằm ở khu vực trung tâm thủ đô Hà Nội.',
                 'lat' => '21.029005',
                 'lng' => '105.852129',

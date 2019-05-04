@@ -67,4 +67,8 @@ class Travel extends Model
     {
         return $this->hasMany('App\Models\Image');
     }
+    public function getId($key)
+    {
+        return $this->where('name', $key)->get();
+    }
 }

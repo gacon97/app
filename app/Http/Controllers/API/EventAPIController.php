@@ -126,4 +126,10 @@ class EventAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Event deleted successfully');
     }
+    public function getImagesEvent($id)
+    {
+        $event = $this->eventRepository->findWithoutFail($id);
+        $images = $event->images;
+        return $this->sendResponse($images->toArray(), 'Get images successfully');
+    }
 }

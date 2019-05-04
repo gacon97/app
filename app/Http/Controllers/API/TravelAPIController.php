@@ -145,5 +145,9 @@ class TravelAPIController extends AppBaseController
         return $this->sendResponse($images->toArray(), 'Get images successfully');
     }
 
-    
+    public function search($keyword)
+    {
+        $travel = $this->travelRepository->search($keyword);
+        return $this->sendResponse($travel->toArray(), 'Get images successfully');
+    }
 }
