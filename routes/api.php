@@ -38,10 +38,12 @@ Route::get('/search/{keyword}', 'TravelAPIController@search');
 
 Route::get('/event/{id}/images', 'EventAPIController@getImagesEvent');
 
+Route::post('/event/{id}/image', 'EventAPIController@postImagesEvent');
 
-
+Route::get('/nhung/place', 'NhungController@getPlace');
 
 
 Route::resource('events', 'EventAPIController');
 
 Route::resource('image_events', 'ImageEventAPIController');
+

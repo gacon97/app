@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TravelSeeder::class);
         $this->call(ImageSeeder::class);
         $this->call(EventTableSeeder::class);
-        //$this->call(ImageEventTableSeeder::class);
+        $this->call(ImageEventTableSeeder::class);
     }
 }

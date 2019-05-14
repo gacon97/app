@@ -55,6 +55,12 @@ class ImageEventAPIController extends AppBaseController
     {
         $input = $request->all();
 
+        if ($request->hasFile('image')) {
+            $path = $request->file('event')->store('public/images/event');
+            $link = Storage::url($path);
+            $this->image = $link;
+        }
+
         $imageEvents = $this->imageEventRepository->create($input);
 
         return $this->sendResponse($imageEvents->toArray(), 'Image Event saved successfully');
