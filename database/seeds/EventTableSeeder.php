@@ -34,7 +34,7 @@ Mỗi ngày vào đúng giờ người người ngược xuôi tan tầm ở Th�
             'content' => 'Dàn hotgirl The face Khánh Linh và Đồng Ánh Quỳnh đã cùng tái ngộ tại sự kiện khai trương cửa hàng thứ 15 tại Vincom Mega Mall Royal City Hà Nội.
 
 Thương hiệu thời trang phụ kiện Charles & Keith vừa chính thức khai trương cửa hàng thứ 15 tại Vincom Mega Mall Royal City Hà Nội với không gian sang trọng, thanh lịch mà bất kỳ cô nàng sành điệu nào cũng muốn bước vào. Sở hữu diện tích rộng lớn, các khu trưng bày của cửa hàng được sắp xếp phù hợp chủ đề, màu sắc và xu hướng theo từng bộ sưu tập của mỗi mùa, giúp khách hàng dễ dàng tìm được món đồ phụ kiện yêu thích.',
-            'start_time' => Carbon::create(2019,4,8),
+            'start_time' => Carbon::create(2019,7,8),
             'end_time' => Carbon::now(),
          ]);
         \App\Models\Event::create([
@@ -50,7 +50,7 @@ Ngôi chùa đã có trên 1.500 năm tuổi và gần đây được bầu ch�
 Bạn hãy chú ý đến cây bồ đề. Cây này mọc ra từ một nhánh lấy từ chính cây gốc ở Boh Gaya bên Ấn Độ, nơi mà Đức Phật đã ngồi tu và đạt Giác ngộ".
 
 Trang wanderlust.co.uk mô tả khung cảnh hồ nước tạo cho chùa Trấn Quốc sự hấp dẫn. Theo trang web này, một ngôi chùa chỉ đẹp nếu hài hòa với môi trường xung quanh, dù là nơi đô thị hay núi non. Các chùa to nhưng trái với cảnh quan xung quanh, thiếu bề dày lịch sử cũng không lọt vào danh sách bình chọn này.',
-            'start_time' => Carbon::create(2019,4,8),
+            'start_time' => Carbon::create(2019,7,8),
             'end_time' => Carbon::now(),
          ]);
         \App\Models\Event::create([
