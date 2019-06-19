@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateTravelAPIRequest;
 use App\Http\Requests\API\UpdateTravelAPIRequest;
 use App\Models\Travel;
+use App\Models\Image;
 use App\Repositories\TravelRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -12,6 +13,7 @@ use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use DB;
+use Storage;
 
 /**
  * Class TravelController
@@ -149,5 +151,48 @@ class TravelAPIController extends AppBaseController
     {
         $travel = $this->travelRepository->search($keyword);
         return $this->sendResponse($travel->toArray(), 'Get images successfully');
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $image = new \App\Models\Image();
+        // if ($request->ImageName) {
+        //     $path = $request->file(base64_decode($request->base64))->store('public/images');
+        //     $link = Storage::url($path);
+        //     $image->image = $link;
+        //     // $image->travel_id = $request->travel_id;
+        //     // $image->save();
+        //     return 'ok';
+        // }
+        // else
+        // {
+        //     return "no";
+        // }
+        // return $request->base64;
+
+        // error_reporting(E_ALL);
+        if(isset($request->ImageName)){
+            // return $request->travel_id;
+            $imgname = $request->ImageName;
+            $imsrc = base64_decode($request->base64);
+            // $path = Storage::putFile('images', file($imgname,$imsrc);
+            // $fp = fopen($imgname, 'w');
+            // fwrite($fp, $imsrc);
+
+            // $path = $imsrc->store('avatars');
+            Storage::put('/public/images/'.$imgname, $imsrc);
+            $link = Storage::url('images/'.$imgname);
+            $image->image = $link;
+            $image->travel_id = (int)$request->travel_id;
+            $image->save();
+            // return $path;
+            // Storage::move('/public/'.$imgname, '/public/images/'.$imgname);
+            // $url = Storage::url($imgname);
+            // if(fclose($fp)){
+            return $link;
+            // }else{
+            // return "Error uploading image";
+            // }
+        }
     }
 }

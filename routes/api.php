@@ -47,3 +47,5 @@ Route::resource('events', 'EventAPIController');
 
 Route::resource('image_events', 'ImageEventAPIController');
 
+Route::post('/uploadImage', 'TravelAPIController@uploadImage');
+
